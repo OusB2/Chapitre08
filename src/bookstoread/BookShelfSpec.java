@@ -50,7 +50,7 @@ public class BookShelfSpec {
     void bookshelfArrangedByBookTitle() {
         shelf.add(effectiveJava, codeComplete, mythicalManMonth);
         List<Book> books = shelf.arrange();
-        // Le tri se base sur le titre (C, E, T)
+
         assertEquals(Arrays.asList(codeComplete, effectiveJava, mythicalManMonth), books,
                 () -> "Books in a bookshelf should be arranged lexicographically by book title");
     }
