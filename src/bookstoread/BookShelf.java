@@ -1,24 +1,25 @@
 package bookstoread;
 
-import org.junit.jupiter.api.BeforeEach;
-
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BookShelf {
 
+    private final List<Book> books = new ArrayList<>();
 
-    private final List<String> books = new ArrayList<>();
-    public List<String> books() {
+
+    public List<Book> books() {
         return Collections.unmodifiableList(books);
     }
 
 
-    public void add(String... booksToAdd) {
+    public void add(Book... booksToAdd) {
         books.addAll(Arrays.asList(booksToAdd));
     }
 
-    public List<String> arrange() {
-        books.sort(Comparator.naturalOrder());
-        return books;
+    public List<Book> arrange() {
+        return books.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
