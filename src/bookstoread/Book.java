@@ -1,8 +1,12 @@
 package bookstoread;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
-
+/**
+ * Représente un livre.
+ * L'implémentation de Comparable définit le tri par défaut (ordre alphabétique du titre).
+ */
 public class Book implements Comparable<Book> {
     private final String title;
     private final String author;
@@ -26,10 +30,25 @@ public class Book implements Comparable<Book> {
         return publishedOn;
     }
 
-
     @Override
     public int compareTo(Book that) {
         return this.title.compareTo(that.title);
+    }
+
+    // Utilisé par JUnit pour comparer si deux listes de livres sont identiques
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(title, book.title) &&
+                Objects.equals(author, book.author) &&
+                Objects.equals(publishedOn, book.publishedOn);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, author, publishedOn);
     }
 
     @Override
